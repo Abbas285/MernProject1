@@ -1,9 +1,21 @@
-import express from "express";
-import { authUser } from "../controllers/userController.js"
-const router = express.Router()
+import express from 'express';
+const router = express.Router();
 
-router.post('/auth', authUser)
+import {
+    authUser,
+    regesterUser,
+    logoutUser,
+    getUserProfile,
+    updateUserProfile,
 
 
 
-export default router
+} from '../controllers/userController.js';
+
+
+router.post('/', regesterUser)
+router.post('/auth', authUser);
+router.route('/logout', logoutUser)
+router.route("/profile").get(getUserProfile).put(updateUserProfile);
+
+export default router;
